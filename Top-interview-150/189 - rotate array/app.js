@@ -11,17 +11,21 @@ var rotate = function (nums, k) {
     console.log(nums);
     reverseIt(nums, 0, k - 1);
     console.log(nums);
-    reverseIt(nums, k, 4);
+    reverseIt(nums, k, nums.length - 1);
     console.log(nums);
 
     function reverseIt(array, startingPoint, endingPoint) {
-        for (let i = startingPoint; i < (endingPoint) / 2; i++) {
-            let temp = array[endingPoint - i];
-            array[endingPoint - i] = array[i];
-            array[i] = temp;
+        for (let i = 0; ; i++) {
+            let temp = array[endingPoint];
+            array[endingPoint] = array[startingPoint];
+            array[startingPoint] = temp;
+            if (i >= (Math.floor((endingPoint - startingPoint) / 2))) break;
+            endingPoint--;
+            startingPoint++;
         }
     }
 };
 
-rotate([1, 2, 3, 4, 5, 6, 7], 3);
-//[5,6,7,1,2,3,4]
+rotate([1, 2, 3, 4, 5, 6, 7], 7);
+// rotate([-1, -100, 3, 99], 2);
+//[3,99,-1,-100]
