@@ -4,20 +4,24 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function (nums, k) {
+    // nums.reverse();
 
-    for (let i = 0; i < k; i++) {
-        // let's pop the array's last item
-        let poppedItem = nums[nums.length - 1];
+    console.log(nums);
+    reverseIt(nums, 0, nums.length - 1);
+    console.log(nums);
+    reverseIt(nums, 0, k - 1);
+    console.log(nums);
+    reverseIt(nums, k, 4);
+    console.log(nums);
 
-        // let's move each item in the array one position forward
-        for (let x = nums.length - 1; x > 0; x--) {
-            nums[x] = nums[x - 1];
+    function reverseIt(array, startingPoint, endingPoint) {
+        for (let i = startingPoint; i < (endingPoint) / 2; i++) {
+            let temp = array[endingPoint - i];
+            array[endingPoint - i] = array[i];
+            array[i] = temp;
         }
-        // let's unshift the saved item
-        nums[0] = poppedItem;
     }
-
-    console.log(nums)
 };
 
 rotate([1, 2, 3, 4, 5, 6, 7], 3);
+//[5,6,7,1,2,3,4]
