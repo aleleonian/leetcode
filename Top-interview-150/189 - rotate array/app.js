@@ -23,11 +23,11 @@ var rotate = function (nums, k) {
     console.log(nums);
 
     firstPointer = 0;
-    secondPointer = 2;
-
-    for (let i = 0; i < (3) / 2; i++) {
+    secondPointer = k - 1;
+    if (secondPointer >= nums.length) secondPointer = firstPointer;
+    for (let i = 0; i < (k) / 2; i++) {
         let temp = nums[firstPointer];
-        nums[firstPointer] = nums[secondPointer];
+        nums[firstPointer] = nums[secondPointer] ? nums[secondPointer] : nums[firstPointer]
         nums[secondPointer] = temp;
         firstPointer++;
         secondPointer--;
@@ -35,10 +35,10 @@ var rotate = function (nums, k) {
 
     console.log(nums);
 
-    firstPointer = 3;
+    firstPointer = k;
     secondPointer = nums.length - 1;
 
-    for (let i = 0; i < (7) / 2; i++) {
+    for (let i = 0; i < (nums.length - k) / 2; i++) {
         let temp = nums[firstPointer];
         nums[firstPointer] = nums[secondPointer];
         nums[secondPointer] = temp;
@@ -52,6 +52,7 @@ var rotate = function (nums, k) {
 
 };
 
-rotate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+rotate([1,2,3], 4);
+// rotate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
 // rotate([-1, -100, 3, 99], 2);
 //[3,99,-1,-100]
