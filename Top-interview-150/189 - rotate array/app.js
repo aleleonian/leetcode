@@ -24,3 +24,27 @@ var rotate = function (nums, k) {
         return arr;
     }
 }
+/*
+
+ChatGPT's version:
+
+var rotate = function(nums, k) {
+    const n = nums.length;
+    k = k % n; // Handle cases where k is greater than the length of the array
+
+    reverseArray(nums, 0, n - 1);        // Reverse the entire array
+    reverseArray(nums, 0, k - 1);        // Reverse the first part
+    reverseArray(nums, k, n - 1);        // Reverse the second part
+
+    function reverseArray(arr, start, end) {
+        while (start < end) {
+            const temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+};
+
+*/
