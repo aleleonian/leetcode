@@ -5,25 +5,13 @@
  */
 var rotate = function (nums, k) {
 
-    //if(rotation times > array.length { rotation times = rotation times - array.length })
-
-    if (k > nums.length) k = k - nums.length;
-
-    console.log(nums);
+    if (k > nums.length) k = k % nums.length;
 
     reverseArray(nums, nums.length, 0);
 
-    console.log(nums);
-
     reverseArray(nums, k, 0);
 
-    console.log(nums);
-
     reverseArray(nums, nums.length - k, k);
-
-    console.log(nums);
-
-    // reverseArray(nums, nums.length, 0);
 
     function reverseArray(arr, howManyElements, startingPosition) {
 
@@ -36,28 +24,3 @@ var rotate = function (nums, k) {
         return arr;
     }
 }
-
-// rotate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2);
-rotate([-1], 2);
-// rotate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
-// rotate([-1, -100, 3, 99], 2);
-//[3,99,-1,-100]
-
-// [1,2,3]
-// 1st rotation
-// [3,1,2]
-// 2nd rotation
-// [2,3,1]
-// 3rd rotation
-// [1,2,3]
-// 4th rotation
-// [3,1,2]
-
-// if(rotation times > array.length { rotation times = rotation times - array.length })
-
-// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-// 1st rotation
-// [10, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-// 2nd rotation
-// [9, 10, ,1 2, 3, 4, 5, 6, 7, 8]
-//
