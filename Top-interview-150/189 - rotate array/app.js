@@ -47,4 +47,8 @@ var rotate = function(nums, k) {
     }
 };
 
+What i like about ChatGPT's solution is that the reverseArray function does not depende on the
+length of the array but the function ends when the pointers meet.
+That's neat!
+
 */
