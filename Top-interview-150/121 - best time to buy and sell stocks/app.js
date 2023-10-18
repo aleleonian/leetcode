@@ -2,9 +2,6 @@
  * @param {number[]} prices
  * @return {number}
  */
-
-//[2,1,2,1,0,1,2]
-
 var maxProfit = function (prices) {
 
     let lowestPrice = prices[0];
@@ -44,8 +41,3 @@ var maxProfit = function (prices) {
     }
     else return bestProfit
 }
-
-console.log(maxProfit([2, 1, 2, 1, 0, 1, 2]));
-
-//[3,2,6,5,0,3]
-//[0,2,3,3,6,5]
