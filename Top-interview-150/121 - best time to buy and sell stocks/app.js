@@ -4,41 +4,26 @@
  */
 var maxProfit = function (prices) {
 
-    let deals = new Map();
+    let bestLowPrice = 0;
+    let bestHighPrice = 0;
 
-    const sortedByPrice = [...prices];
-
-    sortedByPrice.sort((a, b) => a - b);
-
-    let highPrice, lowPrice;
-
-    for (let i = 0; i < sortedByPrice.length; i++) {
-
-        lowPrice = sortedByPrice[i];
-
-        console.log("lowPrice->" + lowPrice);
-
-        const newPricesSlice = prices.slice(prices.indexOf(lowPrice) + 1);
-
-        console.log("newPricesSlice->" + newPricesSlice);
-
-        for (let x = 0; x < newPricesSlice.length; x++) {
-            const highestPriceCandidate = newPricesSlice[x];
-            if (highestPriceCandidate <= lowPrice || highestPriceCandidate < highPrice) continue;
-            else {
-                if (!highPrice || highestPriceCandidate > highPrice) {
-                    highPrice = highestPriceCandidate;
-                }
-            }
+    for (let i = 0; i < prices.length - 1; i++) {
+        let lowPrice, highPrice = 0;
+        lowPrice = prices[i];
+        for (let x = i + 1; x < prices.length; x++) {
+            if (prices[x] > highPrice && prices[x] > lowPrice) highPrice = prices[x];
         }
-        deals.set(lowPrice, highPrice);
-    }
-    console.log(deals);
+        if (highPrice - lowPrice > bestHighPrice - bestLowPrice) {
+            bestHighPrice = highPrice;
+            bestLowPrice = lowPrice;
+        }
 
-    // return highPrice - lowPrice || 0;
+    }
+    return bestHighPrice - bestLowPrice;
+
 };
 
-console.log(maxProfit([3, 2, 6, 5, 0, 3]));
+console.log(maxProfit([8, 6, 4, 3, 3, 2, 3, 5, 8, 3, 8, 2, 6]));
 
 
 //[3,2,6,5,0,3]
