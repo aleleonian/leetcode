@@ -2,29 +2,50 @@
  * @param {number[]} prices
  * @return {number}
  */
+
+//[2,1,2,1,0,1,2]
+
 var maxProfit = function (prices) {
 
-    let bestLowPrice = 0;
-    let bestHighPrice = 0;
+    let lowestPrice = prices[0];
+    let highestPrice;
+    let bestProfit = 0;
 
-    for (let i = 0; i < prices.length - 1; i++) {
-        let lowPrice, highPrice = 0;
-        lowPrice = prices[i];
-        for (let x = i + 1; x < prices.length; x++) {
-            if (prices[x] > highPrice && prices[x] > lowPrice) highPrice = prices[x];
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] <= lowestPrice) {
+            if (highestPrice) {
+                if (highestPrice - lowestPrice > bestProfit) {
+                    bestProfit = highestPrice - lowestPrice;
+                }
+                highestPrice = null;
+            }
+            lowestPrice = prices[i];
         }
-        if (highPrice - lowPrice > bestHighPrice - bestLowPrice) {
-            bestHighPrice = highPrice;
-            bestLowPrice = lowPrice;
+        else {
+            if (prices[i] > highestPrice || !highestPrice) {
+                highestPrice = prices[i];
+            }
         }
-
     }
-    return bestHighPrice - bestLowPrice;
 
-};
+    if (highestPrice) {
+        if (highestPrice - lowestPrice > bestProfit) {
+            bestProfit = highestPrice - lowestPrice;
+        }
+    }
 
-console.log(maxProfit([8, 6, 4, 3, 3, 2, 3, 5, 8, 3, 8, 2, 6]));
+    if (bestProfit == 0) {
+        if (highestPrice) {
+            bestProfit = highestPrice - lowestPrice;
+            return bestProfit;
+        }
 
+        else return 0;
+    }
+    else return bestProfit
+}
+
+console.log(maxProfit([2, 1, 2, 1, 0, 1, 2]));
 
 //[3,2,6,5,0,3]
 //[0,2,3,3,6,5]
