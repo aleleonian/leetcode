@@ -4,40 +4,39 @@
  */
 var maxProfit = function (prices) {
 
-    let lowestPrice = prices[0];
-    let highestPrice;
+    let lowPrice = prices[0];
+    let highPrice;
     let bestProfit = 0;
 
     for (let i = 1; i < prices.length; i++) {
-        if (prices[i] <= lowestPrice) {
-            if (highestPrice) {
-                if (highestPrice - lowestPrice > bestProfit) {
-                    bestProfit = highestPrice - lowestPrice;
+        // if we arrive to a new lowPrice we must calculate the current lowPrice's profit
+        if (prices[i] <= lowPrice) {
+            // in case there was a high price for it
+            if (highPrice) {
+                //if there was a highPrice set, we calculate the profit and if it's better than the previous ones
+                //we store it
+                if (highPrice - lowPrice > bestProfit) {
+                    bestProfit = highPrice - lowPrice;
                 }
-                highestPrice = null;
+                highPrice = null;
             }
-            lowestPrice = prices[i];
+            //let's keep track of the latest lowPrice
+            lowPrice = prices[i];
         }
         else {
-            if (prices[i] > highestPrice || !highestPrice) {
-                highestPrice = prices[i];
+            if (prices[i] > highPrice || !highPrice) {
+                highPrice = prices[i];
             }
         }
     }
 
-    if (highestPrice) {
-        if (highestPrice - lowestPrice > bestProfit) {
-            bestProfit = highestPrice - lowestPrice;
+    if (highPrice) {
+        if (highPrice - lowPrice > bestProfit) {
+            bestProfit = highPrice - lowPrice;
         }
     }
 
-    if (bestProfit == 0) {
-        if (highestPrice) {
-            bestProfit = highestPrice - lowestPrice;
-            return bestProfit;
-        }
-
-        else return 0;
-    }
-    else return bestProfit
+    return bestProfit != 0 ? bestProfit : 0;
 }
+
+console.log(maxProfit([7, 1, 5, 3, 6, 4]));
