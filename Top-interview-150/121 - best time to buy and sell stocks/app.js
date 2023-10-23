@@ -41,3 +41,25 @@ var maxProfit = function (prices) {
 }
 
 console.log(maxProfit([7,1,5,3,6,4]));
+
+
+/*
+ChatGPT's version:
+
+var maxProfit = function(prices) {
+    let lowPrice = prices[0];
+    let bestProfit = 0;
+
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] < lowPrice) {
+            lowPrice = prices[i];
+        } else {
+            bestProfit = Math.max(bestProfit, prices[i] - lowPrice);
+        }
+    }
+
+    return bestProfit;
+};
+
+
+*/ 
