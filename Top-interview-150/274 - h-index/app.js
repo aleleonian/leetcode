@@ -55,18 +55,24 @@ var hIndex = function (citations) {
 // console.log(hIndex([0]));
 // console.log(hIndex([1, 3, 1]));
 
-console.log(hIndex([100]));
+//ChatGPT version:
+var hIndexGPT = function(citations) {
+    citations.sort((a, b) => b - a);
 
-function howManyPapersHaveThisQuantityOfCitations(howManyCitations, array, index) {
-    let counter = 0;
+    let hIndex = 0;
 
-    for (let x = 0; x < array.length; x++) {
-        if (x === 0) continue;
-        if (array[x] >= howManyCitations) counter++;
+    for (let i = 0; i < citations.length; i++) {
+        if (citations[i] >= i + 1) {
+            hIndex++;
+        } else {
+            break;
+        }
     }
 
-    return counter;
-}
+    return hIndex;
+};
+console.log(hIndexGPT([6,5,3,2]));
+
 /*
 
 Input: citations = [3,0,6,1,5]
@@ -79,3 +85,4 @@ and the remaining two with no more than 3 citations each, their h-index is 3
 [0,1,3,5,6]
 
 */
+
